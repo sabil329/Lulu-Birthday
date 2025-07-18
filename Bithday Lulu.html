@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selamat Ulang Tahun!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: url("https://i.ibb.co/02t02QF/bg-bunga.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #4d0039;
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 192, 203, 0.2);
+        backdrop-filter: blur(2px);
+        z-index: 0;
+      }
+
+      .card {
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 50px 30px;
+        border-radius: 25px;
+        box-shadow: 0 0 40px rgba(255, 105, 180, 0.4);
+        width: 92%;
+        max-width: 700px;
+        animation: fadeIn 2s ease;
+      }
+
+      h1 {
+        font-size: 2.4em;
+        font-weight: 700;
+        color: #d63384;
+        margin-bottom: 20px;
+        animation: slideDown 1.5s ease;
+      }
+
+      p {
+        font-size: 17px;
+        line-height: 1.8;
+        margin-top: 15px;
+        padding: 0 10px;
+        color: #5a0033;
+        animation: fadeIn 2.5s ease;
+      }
+
+      .slideshow {
+        position: relative;
+        margin: 30px auto;
+        width: 100%;
+        max-width: 500px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .slideshow img {
+        width: 100%;
+        display: none;
+        transition: opacity 1s ease;
+      }
+
+      .slideshow img.active {
+        display: block;
+      }
+
+      strong {
+        color: #c2185b;
+        font-size: 18px;
+        display: block;
+        margin-top: 25px;
+        font-weight: bold;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      audio {
+        display: none;
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          padding: 40px 20px;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Musik -->
+    <audio autoplay loop oncanplay="this.muted=false; this.play();">
+      <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="card">
+      <h1>TO: Luthfia Anthoni Putri</h1>
+
+      <!-- GALERI SLIDE FOTO -->
+      <div class="slideshow">
+        <img src="foto.jpg" class="active" alt="Foto 1" />
+        <img src="2.jpg" alt="Foto 2" />
+        <img src="3.jpg" alt="Foto 3" />
+        <img src="4.jpg" alt="Foto 4" />
+        <img src="5.jpg" alt="Foto 5" />
+      </div>
+
+      <p>🎉 Selamat ulang tahun ke-20, sayangggkuuu 🎂</p>
+      <p>ANJAYY UDAH 20 TAHUN!</p>
+      <p>20 itu angka spesial. artinya kamu makin dewasa, makin manis, dan makin legal yang berarti udah siap ditanya "kapan nikah?" wkwkwk CANDAAA!</p>
+      <p>
+        ga kerasa kita udah 7 tahun temenan dan aku bangga punya sahabat kayak kamu ANJAYY. semoga semua impianmu tercapai, selalu sehat, bahagia, dan dikelilingi cinta serta rezeki yang melimpah. tetap jadi Lulu yang ceria dan penuh cinta
+        yaaa! 💖
+      </p>
+      <p>jangan pernah muak kalo aku cerita tentang bimo karena anak satu itu ada aja gebrakan dia tiap hari hehehe. makasih banyakkk sekebon kalau bisa diungkapkan, udah jadi teman terbaik yang selalu ada.</p>
+      <p>SEMOGA ILHAM SUKO KAU BALEK AAMIINN</p>
+      <p>sekian yang bisa saya ucapkan, soalnya bingung mau nulis apa lagi, otakku buntu</p>
+      <strong>dari ISTRI SAH MINGYUU 💍</strong>
+    </div>
+
+    <!-- SLIDESHOW SCRIPT -->
+    <script>
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slideshow img");
+
+      function showNextSlide() {
+        slides[slideIndex].classList.remove("active");
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add("active");
+      }
+
+      setInterval(showNextSlide, 3000); // ganti gambar tiap 3 detik
+    </script>
+
+    <!-- CONFETTI SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+      const duration = 12 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        const particleCount = 50 * (timeLeft / duration);
+
+        confetti(
+          Object.assign({}, defaults, {
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          })
+        );
+        confetti(
+          Object.assign({}, defaults, {
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          })
+        );
+      }, 250);
+    </script>
+  </body>
+</html>
